@@ -53,9 +53,13 @@ void Generator::Run(){
 	}
 
 	   for(int i = 0; i < 100; i++) {
+
         io_service->post([&]() {
-           this->PrintNum();
-        });
+
+           		this->PrintNum();
+
+        	}
+		);
     }
 
 	for (std::thread & th : vecOfThreads)
