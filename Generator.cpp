@@ -46,33 +46,27 @@ void Generator::Run(){
 
 	std::vector<std::thread> vecOfThreads;
 
-	//boost::thread_group worker_threads;
-
 	for( int x = 0; x < 5; ++x ){
 
 		vecOfThreads.push_back(std::thread(&Generator::GenerateAndPrintOut,this, io_service));
-		//std::thread( &Generator::GenerateAndPrintOut,this, io_service ) ;
 
 	}
 
-	// for (int i = 0; i < 100; i++){
-
-	// 	io_service->post(  std::thread( &Generator::PrintNum,this)  );
-		
-	// }
 	   for(int i = 0; i < 100; i++) {
         io_service->post([&]() {
            this->PrintNum();
         });
     }
 
-    //work.reset();
-
 	for (std::thread & th : vecOfThreads)
 	{
-		// If thread Object is Joinable then Join that thread.
-		if (th.joinable())
+
+		if (th.joinable()){
+
 			th.join();
+
+		}
+			
 	}
 
 }
