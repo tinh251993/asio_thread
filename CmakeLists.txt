@@ -1,11 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -pthread")
 
 project(aiso_boost)
-
-find_package(Boost REQUIRED COMPONENTS system filesystem)
-find_package(Boost REQUIRED COMPONENTS thread)
 
 add_executable(
 	btvn
@@ -14,9 +11,4 @@ add_executable(
 	Generator.cpp
 )
 
-include_directories(btvn ${Boost_INCLUDE_DIRS})
-link_directories(btvn ${Boost_LIBRARY_DIRS})
-
-target_link_libraries(btvn ${Boost_LIBRARIES})
 target_link_libraries(btvn ws2_32 wsock32 )
-target_link_libraries(btvn Boost::thread)

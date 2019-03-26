@@ -1,4 +1,5 @@
 #include "Generator.hpp"
+
 Generator::Generator(){  
        count = 0;    
 }
@@ -9,20 +10,23 @@ Generator::~Generator(){
 
 void   Generator::GenerateAndPrintOut(std::shared_ptr< asio::io_service > io_service){
 
+	std::system_error&  ec;
+
 	io_service->run();
 
 }
+
 void Generator::PrintNum()
 {
 	std::mt19937 mt(rd());
    
-    std::uniform_int_distribution<int> dist(-10,10);
+    	std::uniform_int_distribution<int> dist(-10,10);
 
-    auto val = dist(mt);	
-
-	m_mutex.lock();
+    	auto val = dist(mt);	
 
 	asio::io_context io;
+	
+	m_mutex.lock();
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
@@ -60,7 +64,7 @@ void Generator::Run(){
 
         	}
 		);
-    }
+    	}
 
 	for (std::thread & th : vecOfThreads)
 	{

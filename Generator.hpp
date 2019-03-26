@@ -4,13 +4,12 @@
 #define _WIN32_WINNT 0x0501
 
 #include <asio.hpp>
-#include <boost/thread.hpp>
-#include <boost/bind.hpp>
+#include <thread>
 #include <mutex>
 #include <iostream>
 #include <random>
 #include <chrono>
-
+#include <system_error>
 
 class Generator{
 
@@ -22,7 +21,6 @@ class Generator{
 
                 void                    Run();
 
-
     private:
                 std::mutex              m_mutex;
 
@@ -33,8 +31,6 @@ class Generator{
                 void                    PrintNum();
 
                 int                     count;
-
-
 
 };
 #endif //GENERATE_HPP
